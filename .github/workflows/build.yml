@@ -23,6 +23,11 @@ jobs:
       - name: Generate Dockerfiles
         run: python update.py
 
+      - name: Prepare build context
+        run: |
+          cp -r etc bin 0.7.62/
+          cp docker-entrypoint.sh requirements.txt docker-healthcheck.sh 0.7.62/
+
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
